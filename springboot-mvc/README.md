@@ -1,14 +1,8 @@
 ## springboot-mvc
-> springboot-mvc 是 spingboot 集成 MVC 练习配置项目，采用的是 `freemarker` 模板引擎(至于为什么
-> 不使用 `thymeleaf` 作为模板引擎完全是个人习惯)
-> 其中在配置过程中踩了不少坑，也翻阅了不少资料
-> 因此特记录下来遇到的问题，方便以后翻阅
+> springboot-mvc 是 spingboot 集成 MVC 练习配置项目，采用的是 `freemarker` 模板引擎(至于为什么不使用 `thymeleaf` 作为模板引擎完全是个人习惯)。其中在配置过程中踩了不少坑，也翻阅了不少资料。因此特记录下来遇到的问题，方便以后翻阅
 
 #### WebMvnConfig 配置类
-> 该类继承 `WebMvcConfigurationSupport` ,虽然继承 `WebMvcConfigurerAdapter ` 类也可以配置MVC
-> 但是 `WebMvcConfigurationSupport` 的配置更全， `WebMvcConfigurerAdapter` 有的他都有!而且在
-> 该项目中采用的 SpringBoot 版本是 2.0 ,`WebMvcConfigurerAdapter` 已经过时了最好实现
-> `WebMvcConfigurer` 重写其中的接口!
+> 该类继承 `WebMvcConfigurationSupport` ,虽然继承 `WebMvcConfigurerAdapter ` 类也可以配置MVC但是 `WebMvcConfigurationSupport` 的配置更全， `WebMvcConfigurerAdapter` 有的他都有!而且在该项目中采用的 SpringBoot 版本是 2.0+ ,`WebMvcConfigurerAdapter` 已经过时了最好实现 `WebMvcConfigurer` 重写其中的接口!
 > ```java
 >  @EnableWebMvc
 >  public class WebMvcConfig implements WebMvcConfigurer {
@@ -26,7 +20,7 @@
 >  }
 >```
 > 上面代码中需要在类中实现关于WebMvcAutoConfiguration的配置,而不是在application.properties中。
-> - 详见: [博客园](https://www.cnblogs.com/sufferingStriver/p/9026764.html)
+> - 详见: <a href="https://www.cnblogs.com/sufferingStriver/p/9026764.html" target="_blank">博客园</a>
 
 ### pom依赖(主要)
 ```xml
