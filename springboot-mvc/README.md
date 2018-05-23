@@ -82,4 +82,6 @@
 > `registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");`
 >
 > 来保证访问到静态资源
+>
+>![swagger-ui](image/swagger-ui.png)
 
