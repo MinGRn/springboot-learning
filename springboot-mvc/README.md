@@ -25,7 +25,7 @@
 >  }
 >```
 > 上面代码中需要在类中实现关于WebMvcAutoConfiguration的配置,而不是在application.properties中。
-> - 详见: <a href="https://www.cnblogs.com/sufferingStriver/p/9026764.html" target="view_window">博客园</a>
+> - 详见: [博客园](https://www.cnblogs.com/sufferingStriver/p/9026764.html?_blank)
 
 ### pom依赖(主要)
 ```xml
