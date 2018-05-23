@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
@@ -18,11 +19,17 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 	private static final String VIEW_SUFFIX = ".ftl";
 	private static final String VIEW_CONTENT_TYPE = "text/html;charset=UTF-8";
 
+	/**
+	 * 注册拦截器Bean
+	 */
 	@Bean
 	public Interceptor interceptor() {
 		return new Interceptor();
 	}
 
+	/**
+	 * 注册拦截器
+	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(interceptor());
@@ -42,6 +49,21 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 		resolver.setSuffix(VIEW_SUFFIX);
 		resolver.setContentType(VIEW_CONTENT_TYPE);
 		return resolver;
+	}
+
+
+	/**
+	 * 静态资源访问,可注册多个静态资源
+	 * <p>
+	 * addResourceHandler:静态资源拦截规则
+	 * addResourceLocations: 静态资源访问路径
+	 * </p>
+	 * webjars: 详阅README.md
+	 */
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+		registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/MATE-INF/resource/webjars/**");
 	}
 
 
