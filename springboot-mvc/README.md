@@ -1,4 +1,4 @@
-## springboot-mvc
+## <span id = "1">springboot-mvc</span>
 > springboot-mvc 是 spingboot 集成 MVC 练习配置项目，采用的是 `freemarker` 模板引擎(至于
 为什么不使用 `thymeleaf` 作为模板引擎完全是个人习惯)。其中在配置过程中踩了不少坑，也翻阅了不少资
 料。因此特记录下来遇到的问题，方便以后翻阅
@@ -58,13 +58,13 @@
 > 所以若不改编模板引擎资源路径的话不配置 `spring.freemarker.template-loader-path` 也是可以的
 
 #### 静态资源访问
-> ```java
->   @Override
->	public void addResourceHandlers(ResourceHandlerRegistry registry) {
->		registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
->		registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/MATE-INF/resource/webjars/**");
->	}
->```
+```java
+@Override
+public void addResourceHandlers(ResourceHandlerRegistry registry) {
+	registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+	registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/MATE-INF/resource/webjars/**");
+}
+```
 > 静态资源访问重写 `addResourceHandlers` 方法,注册 `registry` 即可实现静态资源访问。
 >
 >   > - `addResourceHandler` 静态资源拦截规则
@@ -86,4 +86,53 @@
 >
 >![swagger-ui](image/swagger-ui.png)
 >
+
+#### 全局异常处理
+> Spring boot 全局异常处理有几种方式
+>
+> - 实现 `HandlerExceptionResolver` 接口重写 `resolveException`
+> - 继承 `WebMvcConfigurationSupport` 重写 `configureHandlerExceptionResolvers`
+> - 通过 `@ControllerAdvice` 与 `@ExceptionHandler()` 注解实现全局异常处理
+>
+> 因个人习惯,所以笔者在本练习项目中采用的是实现 `HandlerExceptionResolver` 来完成异常处理
+```java
+@Order(-1000)
+public class GlobalExceptionResolver implements HandlerExceptionResolver {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionResolver.class);
+
+	@Override
+	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+		//doing something
+		//return null;
+		return new ModelAndView("/500");
+	}
+}
+```
+> 注册Bean
+```java
+@Bean
+public GlobalExceptionResolver globalExceptionResolver(){
+	return new GlobalExceptionResolver();
+}
+```
+> 在配置类中注册到Spring容器后，当产生异常时就会调用该方法。注意：放返回值指定视图时会跳转至指定视图中去，
+> 如果返回 NULL 则会继续调用下一个异常处理器去执行
+> 在 `GlobalExceptionResolver` 类上加 `@Order(-1000)` 是因为Spring默认有三个异常拦截器,；里面的
+> `@Order` 分别是 0、1、2 。会首先去这三个拦截器中找匹配的异常，若有匹配则不会执行我们自己定义的异常处理
+> 类。`@Order(-1000)` 的作用就是讲顺序提到第一位，会先加载我们定义的异常处理类，有符合条件的则不会继续走
+> 其他三个默认的
+>
+> 另外通过继承 `WebMvcConfigurationSupport` 重写 `configureHandlerExceptionResolvers` 也是一样
+> 的处理方法，不过不需要有注册 Bean 操作
+```java
+@Override
+public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
+	exceptionResolvers.add((request, response, handler, ex) -> {
+		ModelAndView modelAndView = new ModelAndView();
+		return modelAndView;
+	});
+}
+```
+> 参考文章: [CSDN](https://blog.csdn.net/u013194072/article/details/79044286) [简书](https://www.jianshu.com/p/da311ae29908)
 

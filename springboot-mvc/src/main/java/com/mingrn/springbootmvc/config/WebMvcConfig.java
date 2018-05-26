@@ -1,23 +1,38 @@
 package com.mingrn.springbootmvc.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.ui.Model;
+import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
+
+import javax.servlet.ServletException;
+import java.util.List;
 
 /**
  * WebMVC配置类
  *
  * @author MinGRn <br > 2018/5/22 17:54
  */
+@EnableAsync
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport {
 
 	private static final String VIEW_SUFFIX = ".ftl";
 	private static final String VIEW_CONTENT_TYPE = "text/html;charset=UTF-8";
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(WebMvcConfig.class);
 
 	/**
 	 * 注册拦截器Bean
@@ -65,6 +80,43 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 		registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
 		registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/MATE-INF/resource/webjars/**");
 	}
+
+	/**
+	 * 全局异常处理
+	 */
+	@Bean
+	public GlobalExceptionResolver globalExceptionResolver(){
+		return new GlobalExceptionResolver();
+	}
+
+	/*@Override
+	public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
+		exceptionResolvers.add((request, response, handler, ex) -> {
+			ModelAndView modelAndView = new ModelAndView();
+			if (ex instanceof RuntimeException) {
+				//500
+				modelAndView.setViewName("/500");
+			} else if (ex instanceof NoHandlerFoundException) {
+				//404
+				modelAndView.setViewName("/404");
+			} else if (ex instanceof ServletException) {
+				//
+			} else {
+				String message;
+				if (handler instanceof HandlerMethod) {
+					HandlerMethod handlerMethod = (HandlerMethod) handler;
+					message = String.format("<<== 接口 [%s] 出现异常, %s.%s ==> 异常摘要: %s",
+							request.getRequestURI(),
+							handlerMethod.getBean().getClass().getName(),
+							handlerMethod.getMethod().getName(),
+							ex.getMessage());
+				} else {
+					message = ex.getMessage();
+				}
+			}
+			return modelAndView;
+		});
+	}*/
 
 
 }
