@@ -150,12 +150,18 @@ public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> ex
 >
 >  脚本文件服务器地址和请求的服务器地址不一样！说白了就是 ip、网络协议、port都一样时就为同一个域,否则就是跨域!
   举个栗子
-  http://www.123.com/index.html 调用 http://www.123.com/server.php (非跨域)
-  http://www.123.com/index.html 调用 http://www.456.com/server.php (主域名不同:123/456,跨域)
-  http://abc.123.com/index.html 调用 http://def.123.com/server.php (子域名不同:abc/def,跨域)
-  http://www.123.com:8080/index.html 调用 http://www.123.com:8081/server.php (端口不同:8080/8081,跨域)
-  http://www.123.com/index.html 调用 https://www.123.com/server.php (协议不同:http/https,跨域)
-  请注意：localhost和127.0.0.1虽然都指向本机,但也属于跨域。
+>
+> http://www.123.com/index.html 调用 http://www.123.com/server.php (非跨域)
+>
+> http://www.123.com/index.html 调用 http://www.456.com/server.php (主域名不同:123/456,跨域)
+>
+> http://abc.123.com/index.html 调用 http://def.123.com/server.php (子域名不同:abc/def,跨域)
+>
+> http://www.123.com:8080/index.html 调用 http://www.123.com:8081/server.php (端口不同:8080/8081,跨域)
+>
+> http://www.123.com/index.html 调用 https://www.123.com/server.php (协议不同:http/https,跨域)
+>
+> 请注意：localhost和127.0.0.1虽然都指向本机,但也属于跨域。
 >
 > 为什么要跨域 ?
 >
