@@ -5,6 +5,7 @@
  - [视图配置](#4)
  - [静态资源访问](#5)
  - [全局异常处理](#6)
+ - [跨域请求访问](#7)
 
 ## <span id = "1">说明</span>
 > springboot-mvc 是 spingboot 集成 MVC 练习配置项目，采用的是 `freemarker` 模板引擎(至于
@@ -144,3 +145,22 @@ public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> ex
 ```
 > 参考文章: [CSDN](https://blog.csdn.net/u013194072/article/details/79044286) [简书](https://www.jianshu.com/p/da311ae29908)
 
+#### <span id = "7">跨域请求访问</span>
+> 什么是跨域请求?
+>
+>  脚本文件服务器地址和请求的服务器地址不一样！说白了就是 ip、网络协议、port都一样时就为同一个域,否则就是跨域!
+  举个栗子
+  http://www.123.com/index.html 调用 http://www.123.com/server.php (非跨域)
+  http://www.123.com/index.html 调用 http://www.456.com/server.php (主域名不同:123/456,跨域)
+  http://abc.123.com/index.html 调用 http://def.123.com/server.php (子域名不同:abc/def,跨域)
+  http://www.123.com:8080/index.html 调用 http://www.123.com:8081/server.php (端口不同:8080/8081,跨域)
+  http://www.123.com/index.html 调用 https://www.123.com/server.php (协议不同:http/https,跨域)
+  请注意：localhost和127.0.0.1虽然都指向本机,但也属于跨域。
+>
+> 为什么要跨域 ?
+>
+> 这是由于Netscape提出一个著名的安全策略——同源策略造成的,这是浏览器对JavaScript施加的安全限制。
+  是防止外网的脚本恶意攻击服务器的一种措施。
+  当我们在浏览器中打开百度和谷歌两个网站时,百度浏览器在执行一个脚本的时候会检查这个脚本属于哪个页
+  面的,即检查是否同源,只有和百度同源的脚本才会被执行,如果没有同源策略,那随便的向百度中注入一个js
+  脚本,弹个恶意广告,通过js窃取信息,这就很不安全了。
