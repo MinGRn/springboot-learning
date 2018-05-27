@@ -61,6 +61,8 @@
   demo 中采用的是在一个java类配置方式，注意这种配置方式一定要在配置文件中加上 `spring.datasource.filters=stat,wall,log4j2` 否则即使能登录监控台也无法
   统计SQL
 >
+  ![druid-no-SQL](images/druid-no-SQL.jpg)
+>
 > 另一种配置方式,这种配置一定要在启动类上加 `@ServletComponentScan` 注解
 >
 > 过滤配置器配置类
