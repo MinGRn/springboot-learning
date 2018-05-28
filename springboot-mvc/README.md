@@ -178,3 +178,5 @@ public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> ex
 > 当我们配置跨域请求时控制台输出：
 >
 > ![origin-success](image/origin-success.png)
+>
+> 跨域资源共享 CORS 详解: [阮一峰](http://www.ruanyifeng.com/blog/2016/04/cors.html)

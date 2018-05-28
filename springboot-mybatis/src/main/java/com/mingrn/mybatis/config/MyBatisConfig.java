@@ -31,7 +31,7 @@ public class MyBatisConfig {
 	 */
 	@Primary
 	@Bean(name = "druidDataSource")
-	@ConfigurationProperties("spring.datasource")
+	@ConfigurationProperties(prefix = "spring.datasource")
 	public DruidDataSource druidDataSource() {
 		return new DruidDataSource();
 	}
