@@ -170,3 +170,11 @@ public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> ex
   当我们在浏览器中打开百度和谷歌两个网站时,百度浏览器在执行一个脚本的时候会检查这个脚本属于哪个页
   面的,即检查是否同源,只有和百度同源的脚本才会被执行,如果没有同源策略,那随便的向百度中注入一个js
   脚本,弹个恶意广告,通过js窃取信息,这就很不安全了。
+>
+> 现在我们来测试下跨域，当我们没有配置跨域请求时进行请求 `http://localhost:9999/crosRequest`
+>
+> ![origin-fail](image/origin-fail.png)
+>
+> 当我们配置跨域请求时控制台输出：
+>
+> ![origin-success](image/origin-success.png)
