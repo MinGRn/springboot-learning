@@ -1,18 +1,18 @@
 [目录结构]
- - [说明](#1)
- - [WebMvnConfig 配置类](#2)
- - [pom依赖(主要)](#3)
- - [视图配置](#4)
- - [静态资源访问](#5)
- - [全局异常处理](#6)
- - [跨域请求访问](#7)
+ - [说明](#a)
+ - [WebMvnConfig 配置类](#b)
+ - [pom依赖(主要)](#c)
+ - [视图配置](#d)
+ - [静态资源访问](#e)
+ - [全局异常处理](#f)
+ - [跨域请求访问](#g)
 
-## <span id = "1">说明</span>
+## <span id = "a">说明</span>
 > springboot-mvc 是 spingboot 集成 MVC 练习配置项目，采用的是 `freemarker` 模板引擎(至于
 为什么不使用 `thymeleaf` 作为模板引擎完全是个人习惯)。其中在配置过程中踩了不少坑，也翻阅了不少资
 料。因此特记录下来遇到的问题，方便以后翻阅
 
-#### <span id = "2">WebMvnConfig 配置类</span>
+#### <span id = "b">WebMvnConfig 配置类</span>
 > 该类继承 `WebMvcConfigurationSupport` ,虽然继承 `WebMvcConfigurerAdapter ` 类也可以
 配置MVC。但是 `WebMvcConfigurationSupport` 的配置更全， `WebMvcConfigurerAdapter` 有
 的他都有!而且在该项目中采用的 SpringBoot 版本是 2.0+ ,`WebMvcConfigurerAdapter` 已经过时
@@ -36,7 +36,7 @@
 > 上面代码中需要在类中实现关于WebMvcAutoConfiguration的配置,而不是在application.properties中。
 > - 详见: [博客园](https://www.cnblogs.com/sufferingStriver/p/9026764.html?_blank)
 
-### <span id = "3">pom依赖(主要)</span>
+### <span id = "c">pom依赖(主要)</span>
 ```xml
 <dependency>
     <groupId>org.springframework.boot</groupId>
@@ -44,7 +44,7 @@
 </dependency>
 ```
 
-##### <span id = "4">视图配置</span>
+##### <span id = "d">视图配置</span>
 ```java
     @Bean
     public ViewResolver viewResolver(){
@@ -66,7 +66,7 @@
 >
 > 所以若不改编模板引擎资源路径的话不配置 `spring.freemarker.template-loader-path` 也是可以的
 
-#### <span id = "5">静态资源访问</span>
+#### <span id = "e">静态资源访问</span>
 ```java
 @Override
 public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -96,7 +96,7 @@ public void addResourceHandlers(ResourceHandlerRegistry registry) {
 >![swagger-ui](image/swagger-ui.png)
 >
 
-#### <span id = "6">全局异常处理</span>
+#### <span id = "f">全局异常处理</span>
 > Spring boot 全局异常处理有几种方式
 >
 > - 实现 `HandlerExceptionResolver` 接口重写 `resolveException`
@@ -145,7 +145,7 @@ public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> ex
 ```
 > 参考文章: [CSDN](https://blog.csdn.net/u013194072/article/details/79044286) [简书](https://www.jianshu.com/p/da311ae29908)
 
-#### <span id = "7">跨域请求访问</span>
+#### <span id = "g">跨域请求访问</span>
 > 什么是跨域请求?
 >
 >  脚本文件服务器地址和请求的服务器地址不一样！说白了就是 ip、网络协议、port都一样时就为同一个域,否则就是跨域!

@@ -18,5 +18,6 @@
   <modules>
     <module>springboot-mvc</module>
     <module>springboot-mybatis</module>
+    <module>springboot-swagger</module>
   </modules>
 </project>
