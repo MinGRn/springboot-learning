@@ -1,6 +1,7 @@
 package com.mingrn.mybatis.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.mingrn.mybatis.constant.ProjectConstants;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -22,7 +23,7 @@ import javax.sql.DataSource;
  * @author MinGRn <br > 2018/5/27 13:37
  */
 @Configuration
-@MapperScan(basePackages = "com.mingrn.springbootmybatis.repository", sqlSessionTemplateRef = "sqlSessionTemplate")
+@MapperScan(basePackages = ProjectConstants.REPOSITORY_PACKAGE, sqlSessionTemplateRef = "sqlSessionTemplate")
 public class MyBatisConfig {
 
 	/**
