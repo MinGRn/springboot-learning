@@ -44,7 +44,7 @@
 ```
 
 #### Swagger 效果图
-> ![swagger](image d/swagger.png)
+> ![swagger](image/swagger.png)
 
 #### 创建 Swagger2 配置类
 > 在 `Application.java` 同级创建 Swagger2 的配置类 Swagger2
