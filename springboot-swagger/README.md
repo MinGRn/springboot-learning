@@ -117,15 +117,15 @@ public RestfulProtocol remove(Long id) {
 private String  title;
 ```
 
-> `@ApiImplicitParam` 详解
+> @ApiImplicitParam 详解
 
 |属性   |取值	    |作用   |
 | :-------- | --------:| :--: |
 |paramType   |	    |查询参数类型   |
 |   |path	    |以地址的形式提交数据(eg: `@PathVariable`)   |
 |   |query	    |直接跟参数完成自动映射赋值(eg: `@RequestParam`)   |
-|   |body	    |以流的形式提交 仅支持POST   |
-|   |header	    |参数在request headers 里边提交   |
+|   |body	    |以流的形式提交 仅支持POST(eg: `@RequestBody`)   |
+|   |header	    |参数在request headers 里边提交(eg: `@RequestHeader`)   |
 |   |form	    |以form表单的形式提交 仅支持POST   |
 |dataType   |	    |参数的数据类型 只作为标志说明，并没有实际验证   |
 |   |Long	    |以地址的形式提交数据   |
