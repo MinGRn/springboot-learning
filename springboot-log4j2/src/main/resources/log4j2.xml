@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Configuration属性:status,monitorInterval;
+	↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+    status : 这个用于设置log4j2自身内部的信息输出,可以不设置,当设置成trace时,会看到log4j2内部各种详细输出,
+    		 默认:WARN 级别,如果设置为WARN,则低于WARN的信息都不会输出;
+    monitorInterval : Log4j能够自动检测修改配置文件和重新配置本身, 设置间隔秒数.此处表示每隔600秒重读一次配置文件;
+    ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+-->
+<Configuration>
+	<!--日志级别: ALL < TRACE < DEBUG < INFO < WARN < ERROR < FATAL < OFF -->
+	<!--建议只使用四个级别,优先级从高到低分别是 ERROR、WARN、INFO、DEBUG-->
+	<!--
+		日志级别说明:
+		↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+		ALL: 打印所有日志记录;
+		TRACE: 一般不会用;
+		DEBUG: 指出细粒度信息事件对调试应用程序是非常有帮助的,主要用于开发过程中打印一些运行信息;
+		INFO: 消息在粗粒度级别上突出强调应用程序的运行过程.打印一些你感兴趣的或者重要的信息,这个可以用于生产环境中输出程序运行的一些重要信息,但是不能滥用,避免打印过多的日志;
+		WARN: 表明会出现潜在错误的情形,有些信息不是错误信息,但是也要给程序员的一些提示;
+		ERROR: 指出虽然发生错误事件,但仍然不影响系统的继续运行.打印错误和异常信息,如果不想输出太多的日志,可以使用这个级别;
+		FATAL: 指出每个严重的错误事件将会导致应用程序的退出.这个级别比较高了.重大错误,这种级别你可以直接停止程序了;
+		OFF: 最高等级的,用于关闭所有日志记录;
+		↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+	-->
+
+	<!--
+		<Properties>自定义属性配置</Properties>
+		↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+		APP_NAME: APP名称
+		APP_HOME_PATH: 日志输出路径
+		TRACE_LOG_FILE: TRACE 级别日志输出路径
+		DEBUG_LOG_FILE: DEBUGGER 级别日志输出路径
+		INFO_LOG_FILE: INFO 级别日志输出路径
+		WARN_LOG_FILE: WARN 级别日志输出路径
+		ERROR_LOG_FILE: ERROR 级别日志输出路径
+		FATAL_LOG_FILE: FATAL 级别日志输出路径
+		ALL_LOG_FILE: 全部日志路径
+		↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+	-->
+	<Properties>
+		<!-- 配置日志文件输出目录,此处为项目根目录下的logs文件夹 -->
+		<property name="APP_NAME">springboot-log4j2</property>
+		<!--/home/springboot-log4j2 会在根盘符创建/hone/springboot-log4j2 文件夹-->
+		<!--<Property name="APP_HOME">/home/springboot-log4j2</Property>-->
+		<property name="APP_HOME_PATH">/logs</property><!--${APP_HOME}/-->
+		<property name="TRACE_LOG_FILE">${APP_HOME_PATH}/trace/${APP_NAME}_trace</property>
+		<property name="DEBUG_LOG_FILE">${APP_HOME_PATH}/debug/${APP_NAME}_debug</property>
+		<property name="INFO_LOG_FILE">${APP_HOME_PATH}/info/${APP_NAME}_info</property>
+		<property name="WARN_LOG_FILE">${APP_HOME_PATH}/warn/${APP_NAME}_warn</property>
+		<property name="ERROR_LOG_FILE">${APP_HOME_PATH}/error/${APP_NAME}_error</property>
+		<property name="FATAL_LOG_FILE">${APP_HOME_PATH}/fatal/${APP_NAME}_fatal</property>
+		<property name="ALL_LOG_FILE">${APP_HOME_PATH}/all/${APP_NAME}_all</property>
+	</Properties>
+
+	<Appenders>
+		<!--这个输出控制台的配置-->
+		<Console name="Console" target="SYSTEM_OUT">
+			<!--控制台只输出level及其以上级别的信息(onMatch),其他的直接拒绝(onMismatch)-->
+			<!--<ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>-->
+			<!--日志输出的格式-->
+			<!--
+				%d{yyyy-MM-dd HH:mm:ss, SSS} : 日志生产时间,输出到毫秒的时间
+				%-5level : 输出日志级别,-5表示左对齐并且固定输出5个字符,如果不足在右边补0
+				%c : logger的名称(%logger)
+				%t : 输出当前线程名称
+				%p : 日志输出格式
+				%m : 日志内容,即 logger.info("message")
+				%n : 换行符
+				%C : Java类名(%F)
+				%L : 行号
+				%M : 方法名
+				%l : 输出语句所在的行数, 包括类名、方法名、文件名、行数
+				hostName : 本地机器名
+				hostAddress : 本地ip地址
+			 -->
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+		</Console>
+
+		<!--
+			循环日志文件: 日志文件大于阀值的时候,就开始写一个新的日志文件
+			这个会打印出所有的信息,每次大小超过size,则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩,作为存档
+ 			name		: Appender名称
+			fileName    : 日志存储路径
+			filePattern : 历史日志封存路径.其中%d{yyyyMMddHH}表示了封存历史日志的时间单位(目前单位为小时,yyyy表示年,MM表示月,
+						  dd表示天,HH表示小时,mm表示分钟,ss表示秒,SS表示毫秒).注意后缀,log4j2自动识别zip等后缀,表示历史日志需要压缩
+			SizeBasedTriggeringPolicy : 指定当文件体积大于size指定的值时,触发Rolling
+			DefaultRolloverStrategy : 指定最多保存的文件个数
+			TimeBasedTriggeringPolicy : 这个配置需要和filePattern结合使用
+				注意filePattern中配置的文件重命名规则是${INFO_LOG_FILE}_%d{yyyy-MM-dd}_%i,最小的时间粒度是dd,即天,
+				TimeBasedTriggeringPolicy指定的size是1,结合起来就是每1天生成一个新文件
+		-->
+
+		<RollingRandomAccessFile name="INFO" fileName="${INFO_LOG_FILE}.log"
+								 filePattern="${INFO_LOG_FILE}_%d{yyyy-MM-dd}_%i.log.zip">
+			<Filters>
+				<ThresholdFilter level="WARN" onMatch="DENY" onMismatch="NEUTRAL"/>
+				<ThresholdFilter level="TRACE" onMatch="ACCEPT" onMismatch="DENY"/>
+			</Filters>
+			<PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"/>
+				<SizeBasedTriggeringPolicy size="1MB"/>
+			</Policies>
+			<DefaultRolloverStrategy max="20"/>
+		</RollingRandomAccessFile>
+
+		<!--错误信息记录-->
+		<RollingRandomAccessFile name="ERROR" fileName="${ERROR_LOG_FILE}.log"
+								 filePattern="${ERROR_LOG_FILE}_%d{yyyy-MM-dd}_%i.log.zip">
+			<Filters>
+				<ThresholdFilter level="FATAL" onMatch="DENY" onMismatch="NEUTRAL"/>
+				<ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+			</Filters>
+			<PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"/>
+				<SizeBasedTriggeringPolicy size="1MB"/>
+			</Policies>
+			<DefaultRolloverStrategy max="20"/>
+		</RollingRandomAccessFile>
+
+		<!--系统级别的错误信息-->
+		<RollingRandomAccessFile name="FATAL" fileName="${FATAL_LOG_FILE}.log"
+								 filePattern="${FATAL_LOG_FILE}%d{yyyy-MM-dd}_%i.log.zip">
+			<Filters>
+				<ThresholdFilter level="FATAL" onMatch="ACCEPT" onMismatch="DENY"/>
+			</Filters>
+			<PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"/>
+				<SizeBasedTriggeringPolicy size="1MB"/>
+			</Policies>
+			<DefaultRolloverStrategy max="20"/>
+		</RollingRandomAccessFile>
+
+		<!--全部日志信息:DEBUG及以上级别-->
+		<RollingRandomAccessFile name="ALL" fileName="${ALL_LOG_FILE}.log"
+								 filePattern="${ALL_LOG_FILE}%d{yyyy-MM-dd}_%i.log.zip">
+			<Filters>
+				<ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+			</Filters>
+			<PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"/>
+				<SizeBasedTriggeringPolicy size="10MB"/>
+			</Policies>
+			<DefaultRolloverStrategy max="20"/>
+		</RollingRandomAccessFile>
+
+		<!--配置异步写日志-->
+		<Async name="Async">
+			<AppenderRef ref="ALL"/>
+		</Async>
+
+		<!--输出到MongoDB中-->
+		<!--<NoSql name="databaseAppender">
+			<MongoDb databaseName="test" collectionName="errorlog" server="localhost" port="27017"/>
+		</NoSql>-->
+	</Appenders>
+
+	<!--然后定义logger,只有定义了logger并引入的appender,appender才会生效-->
+	<Loggers>
+		<!--监控系统信息-->
+		<Logger name="org.springframework" level="info" additivity="false">
+			<AppenderRef ref="Console"/>
+		</Logger>
+
+		<!--输出到NoSQL中-->
+		<!--<Logger name="mongoLog" level="trace" additivity="false">
+			<AppenderRef ref="databaseAppender"/>
+		</Logger>-->
+
+		<Root level="debug">
+			<!-- 这儿为trace表示什么都可以打印出来了,其他几个级别分别为：TRACE、DEBUG、INFO、WARN、ERROR和FATAL -->
+			<Appender-Ref ref="Console"/>
+			<Appender-Ref ref="INFO"/>
+			<Appender-Ref ref="ERROR"/>
+			<Appender-Ref ref="FATAL"/>
+		</Root>
+	</Loggers>
+</Configuration>
