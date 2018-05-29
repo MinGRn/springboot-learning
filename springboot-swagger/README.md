@@ -89,6 +89,7 @@ public class Swagger2 {
 | :-------- | --------:| :--: |
 | 对象属性  | @ApiModelProperty	 |  用在出入参数对象的字段上   |
 | 协议集描述     |   @Api	 |  用于controller类上  |
+| 协议集描述     |   @ApiIgnore	 |  用于controller类上，指定类不产生文档内容  |
 | 协议描述      |    @ApiOperation | 用在controller的方法上 |
 | Response集      |    @ApiResponses | 用在controller的方法上  |
 | Response      |    @ApiResponse | 用在 @ApiResponses里边  |
