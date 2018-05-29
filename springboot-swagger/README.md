@@ -1,3 +1,5 @@
+[TOC]
+
 ### SpringBoot 使用 Swagger 构建 RESTful 风格 Api
 
 #### 为什么要使用 Swagger 构建 Api ？
@@ -118,7 +120,20 @@ public RestfulProtocol remove(Long id) {
 private String  title;
 ```
 
-> @ApiImplicitParam 详解
+####  Api注解详解
+
+|属性   |取值	    |作用   |
+| :------| -----:| :---:|
+|description|	    |对方法进行描述|
+
+#### ApiOperation   注解详解
+
+|属性   |取值	    |作用   |
+| :------| -----:| :---:|
+|value|	    |对方法进行简单描述|
+|notes|     |对方法进行详细描述|
+
+####  @ApiImplicitParam 详解
 
 |属性   |取值	    |作用   |
 | :-------- | --------:| :--: |
