@@ -77,9 +77,9 @@ public class Swagger2 {
 > 通过 `@Configuration` 注解，让 Spring 来加载该类配置。再通过 `@EnableSwagger2` 注解来启用
   Swagger2。
 >
-> 再通过createRestApi函数创建Docket的Bean之后，apiInfo()用来创建该Api的基本信息（这些基本信息
-  会展现在文档页面中）。select()函数返回一个ApiSelectorBuilder实例用来控制哪些接口暴露给Swagger
-  来展现，本例采用指定扫描的包路径来定义，Swagger会扫描该包下所有Controller定义的API，并产生文档
+> 再通过 `createRestApi` 函数创建 Docket 的 Bean 之后，`apiInfo()` 用来创建该Api的基本信息（这些基本信息
+  会展现在文档页面中）。`select()` 函数返回一个 ApiSelectorBuilder 实例用来控制哪些接口暴露给 Swagger
+  来展现，本例采用指定扫描的包路径来定义，Swagger 会扫描该包下所有 Controller 定义的 API，并产生文档
   内容（除了被 `@ApiIgnore` 指定的请求）。
 
 #### 注解详解
@@ -97,7 +97,6 @@ public class Swagger2 {
 | 描述返回对象的意义	      |    @ApiModel | 用在返回对象类上  |
 > @RequestMapping此注解的推荐配置 `value` `method` `produces`
 >
-> DEMO
 ```java
 @ApiOperation("信息软删除")
 @ApiResponses({
@@ -123,14 +122,21 @@ private String  title;
 |属性   |取值	    |作用   |
 | :-------- | --------:| :--: |
 |paramType   |	    |查询参数类型   |
-|   |path	    |以地址的形式提交数据   |
-|   |query	    |直接跟参数完成自动映射赋值   |
+|   |path	    |以地址的形式提交数据(eg: `@PathVariable`)   |
+|   |query	    |直接跟参数完成自动映射赋值(eg: `@RequestParam`)   |
 |   |body	    |以流的形式提交 仅支持POST   |
 |   |header	    |参数在request headers 里边提交   |
 |   |form	    |以form表单的形式提交 仅支持POST   |
 |dataType   |	    |参数的数据类型 只作为标志说明，并没有实际验证   |
 |   |Long	    |以地址的形式提交数据   |
 |   |String	    |以地址的形式提交数据   |
+|   |int	    |以地址的形式提交数据   |
+|   |boolean	    |以地址的形式提交数据   |
+|   |float	    |以地址的形式提交数据   |
+|   |double	    |以地址的形式提交数据   |
+|   |decimal	    |以地址的形式提交数据   |
+|   |date	    |以地址的形式提交数据   |
+|   |datetime	    |以地址的形式提交数据   |
 |name   |	    |接收参数名   |
 |value   |	    |接收参数的意义描述   |
 |required   |	    |参数是否必填   |
