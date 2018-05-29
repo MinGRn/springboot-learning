@@ -59,10 +59,10 @@
 > `property`: 配置文件全局属性的声明，使用方式为：${声明的属性名称}。${sys:catalina.home}为tomcat部署路径，例如：/data/tomcat。
 >
 > `RollingRandomAccessFile`: 基本属性
-> - name：Appender名称
-> - immediateFlush：log4j2接收到日志事件时，是否立即将日志刷到磁盘。默认为true。
-> - fileName：日志存储路径
-> - filePattern：历史日志封存路径。其中%d{yyyyMMddHH}表示了封存历史日志的时间单位（目前单位为小时，yyyy表示年，MM表示月，dd表示天，HH表示小时，mm表示分钟，ss表示秒，SS表示毫秒）。注意后缀，log4j2自动识别zip等后缀，表示历史日志需要压缩。
+> - `name`：Appender名称
+> - `immediateFlush`：log4j2接收到日志事件时，是否立即将日志刷到磁盘。默认为true。
+> - `fileName`：日志存储路径
+> - `filePattern`：历史日志封存路径。其中%d{yyyyMMddHH}表示了封存历史日志的时间单位（目前单位为小时，yyyy表示年，MM表示月，dd表示天，HH表示小时，mm表示分钟，ss表示秒，SS表示毫秒）。注意后缀，log4j2自动识别zip等后缀，表示历史日志需要压缩。
 >
 > `TimeBasedTriggeringPolicy`:
 > - `interval`：表示历史日志封存间隔时间，单位为filePattern设置的单位值
