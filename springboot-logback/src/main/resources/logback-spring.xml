@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+	<property name="APP_NAME" value="Logback"/>
+	<property name="APP_HOME" value="/home/logback"/>
+	<property name="LOG_HOME_PATH" value="${APP_HOME}/logs"/>
+	<property name="DEBUG_LOG_FILE" value="${LOG_HOME_PATH}/debug/${APP_NAME}_debug" />
+
+	<appender name="DEBUG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${DEBUG_LOG_FILE}.%d{yyyy-MM-dd}.log</FileNamePattern>
+			<MaxHistory>60</MaxHistory>
+		</rollingPolicy>
+
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>DEBUG</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	<root level="INFO">
+		<appender-ref ref="DEBUG_FILE" />
+	</root>
+
+	<logger name="com.mingrn.logback" level="DEBUG">
+		<appender-ref ref="DEBUG_FILE"/>
+	</logger>
+
+	<logger name="com.uhope.rl.logback.repository" level="DEBUG" />
+</configuration>
