@@ -634,13 +634,12 @@ java.lang.Exception: 99 is invalid
 > TimeBasedRollingPolicy fileNamePattern 值列举
 
 |Number of rollovers |Active output target |Archived log files |file |
-:-----|---:|:--:|
+|:-------------------|--------------------:|------------------:|:---:|
 |0 | foo.log| - | 没有翻转文件，日志将会记录初始文件|
 |1 | foo.log| foo1.log| 第一次翻转，文件foo.log 将会被命名为foo1.log，新文件 foo.log 将会被创建并成为活动输出目标。|
 |2 | foo.log| foo1.log、foo2.log| 第二次翻转，文件foo1.log 将会被命名为foo2.log，文件foo.log 将会被命名为foo1.log，新文件 foo.log 将会被创建并成为活动输出目标。| 同上 |
 |3 | foo.log| foo1.log、foo2.log、foo3.log| 同上 |
 |4 | foo.log| foo1.log、foo2.log、foo3.log、foo4.log| 同上 |
-
 ```xml
 <configuration>
   <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
