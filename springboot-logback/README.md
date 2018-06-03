@@ -48,7 +48,7 @@
 >
 >  **默认logback日志打印效果图**
 >
->![logback](./logback.png)
+>![logback](image/logback.png)
 >
 > 从上图可以看到，日志输出内容元素如下
 >  - 时间日期 ：精确到毫秒
@@ -73,17 +73,17 @@
 >
 >Here is the code of the `logback-spring.xml` file
 >
->![create-logback-config](./create-logback-config.png)
+>![create-logback-config](image/create-logback-config.png)
 >
 > Sping-Boot 默认集成的 `logback`打印的日志样式个人觉得比较喜欢，而且默认打印的日志虽然不足以满足我们日常开发需要。但是我们可以直接在其基础上做些补充修改就能做到我们想要的日志输出，况且如果我们直接自定义日志输出的话想在控制台又想对不同的信息输出不同的颜色信息在进行定义的话也完全是脱裤子放弃多此一举不是？更何况默认Spring-Boot默认就做了这些开箱即用操作，所以我们直接引用进来即可！
 >
 > 笔者使用的 SpringBoot 开发版本为 `2.0.2.REALEASE` 版本，所以直接找到 `spring-boot-2.0.2.REALEASE` 依赖包。可以看到该依赖包下 `org.springframework.boot` 包级目录有许多默认配置依赖包类
 >
-> ![spring-boot-2.0.2.release](./spring-boot-2.0.2.release.png)
+> ![spring-boot-2.0.2.release](image/spring-boot-2.0.2.release.png)
 >
 > 当然，这里主要是看 `logging` 包，在该包中有个 `logback` 包，这里这里面放的就是默认 `logback` 日志配置文件。
 >
->![logging-logback](./logging-logback.png)
+>![logging-logback](image/logging-logback.png)
 >
 >其中主要有四个 `xml` 配置文件，我在可以就在我们创建的 `logback-spring.xml` 配置文件中引入 `base.xml` 配置文件。
 ```xml
