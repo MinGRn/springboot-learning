@@ -531,7 +531,9 @@ java.lang.Exception: 99 is invalid
 |maxFileSize |int |每个文件最大保存大小，如 10M，100M |
 |totalSizeCap |int |控制日志文档存储的总大，如 3GB、100M|
 |cleanHistoryOnStart |boolean |通过将清理历史记录设置为true，在appender启动时执行存档删除操作。默认false|
+
 > TimeBasedRollingPolicy fileNamePattern 值列举：
+
 |fileNamePattern |Rollover schedule |file |
 |:---------------|-----------------:|:------:|
 |/wombat/foo.%d  |默认：yyyy-MM-dd 每天滚动|/wombat/foo.2018-6-1、 /wombat/foo.2018-6-2|
