@@ -1,7 +1,9 @@
 package com.mingrn.mvc.config;
 
+import com.mingrn.mvc.filter.ServiceFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -73,10 +75,24 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 	}
 
 	/**
+	 * 这个Filter 解决页面跨域访问问题
+	 */
+	/*@Bean
+	public FilterRegistrationBean corsFilter() {
+		FilterRegistrationBean registration = new FilterRegistrationBean();
+		registration.setFilter(new ServiceFilter());
+		registration.addUrlPatterns("/*");
+		registration.setName("MainFilter");
+		registration.setAsyncSupported(true);
+		registration.setOrder(1);
+		return registration;
+	}*/
+
+	/**
 	 * 全局异常处理
 	 */
 	@Bean
-	public GlobalExceptionResolver globalExceptionResolver(){
+	public GlobalExceptionResolver globalExceptionResolver() {
 		return new GlobalExceptionResolver();
 	}
 
